@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  if (!user)
+    a(href="/login") 登陆
+    br
+    a(href="/register") 注册
+  if (user)
+    p 欢迎您 #{user.username}
+    a(href="/logout") 注销
+    br
+    a(href="/share") 分享食谱
