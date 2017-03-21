@@ -19,7 +19,7 @@ body {
 
 }
 
-.mask{
+.mask-dark{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -27,6 +27,16 @@ body {
 	width: 100%;
 	z-index: -1;
 	background-color: rgba(0,0,0,0.3);
+}
+
+.mask-white{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	background-color: #fff;
 }
 
 
