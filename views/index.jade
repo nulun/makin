@@ -2,19 +2,23 @@ extends layout
 
 block content
 	if (!user)
-		.container
-			h1 注册
-			p.lead 在cook-share与世界分享你的美味心得
+		.center.my-container
+			.mask
+			h1 COOK-SHARE
+			p.lead 与世界分享你的美味心得
 			br
-			form(role='form', action="/register",method="post", style='max-width: 300px;')
+			form(role="form", action="http://cook-share.com/register", method="post", style="max-w			300px;")
 				.form-group
-					input.form-control(type='text', name="username", placeholder='用户名')
+					input.form-control(type="text", name="username", placeholder="用户名")
 				.form-group
-					input.form-control(type='password', name="password", placeholder='密码')
-				button.btn.btn-primary(type='submit') 注册
+					input.form-control(type="password", name="password", placeholder="密码")
+				button.btn.btn-primary.btn-block(type="submit") 注册
 				br
-				a(href="/login")
-					button.btn.btn-default(type="button") 登陆
+				.a-home-container
+					.a-home-right
+						a.a-home-white(href="http://cook-share.com/login") 登陆
+					.a-home-left
+						a.a-home-dark(href="") 找回密码
 	if (user)
 		p #{user.username} ，最近厨艺精进了吗？
 		a(href="/logout")
