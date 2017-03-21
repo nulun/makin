@@ -1,7 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
-var Recipe = require('../models/recipe'); //add
+var Recipe = require('../models/recipe');
 var router = express.Router();
 
 
@@ -42,18 +42,7 @@ router.get('/ping', function(req, res) {
     res.status(200).send("pong!");
 });
 
-// add
-router.get('/share', function(req, res) {
-    res.render('share');
-});
 
-router.post('/share', function(req, res) {
-    if (err) {
-        console.log(err);
-    }
-    var recipeEntity = new Recipe({ recipe_name: req.body.recipe_name }, { food_materials: req.body.food_materials }, { cook_time: req.body.cook_time }, { tips: req.body.tips });
-    recipeEntity.save();
-});
 
 module.exports = router;
 

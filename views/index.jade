@@ -1,12 +1,26 @@
 extends layout
 
 block content
-  if (!user)
-    a(href="/login") 登陆
-    br
-    a(href="/register") 注册
-  if (user)
-    p 欢迎您 #{user.username}
-    a(href="/logout") 注销
-    br
-    a(href="/share") 分享食谱
+	if (!user)
+		.container
+			h1 注册
+			p.lead 在cook-share与世界分享你的美味心得
+			br
+			form(role='form', action="/register",method="post", style='max-width: 300px;')
+				.form-group
+					input.form-control(type='text', name="username", placeholder='用户名')
+				.form-group
+					input.form-control(type='password', name="password", placeholder='密码')
+				button.btn.btn-default(type='submit') 注册
+				&nbsp;
+				a(href='/')
+					button.btn.btn-primary(type="button") 取消
+		a(href="/login")
+			button.btn.btn-default(type="button") 登陆
+	if (user)
+		p #{user.username} ，最近厨艺精进了吗？
+		a(href="/logout")
+			button.btn.btn-default(type="button") 注销
+		&nbsp;
+		a(href="/share")
+			button.btn.btn-primary(type='submit') 分享食谱
