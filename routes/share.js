@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     var recipeEntity = new Recipe({ recipe_name: req.body.recipe_name , food_materials: req.body.food_materials, cook_time: req.body.cook_time, tips: req.body.tips });
-    console.log(req.body.tips);
     console.log(recipeEntity);
     recipeEntity.save();
     next();
