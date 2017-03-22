@@ -1,21 +1,26 @@
-extend layout
+extends layout
+
 block content
-	.container
-		h1 撰写食谱
-		br
-		form(role='form', action="/share",method="post", style='max-width: 300px;')
-			.form-group
-				input.form-control(type='text', name="recipe_name", placeholder='食谱名', required)
-			.form-group
-				input.form-control(type='text', name="food_materials", placeholder='食材种类', required)
-			.form-group
-				input.form-control(type='text', name="cook_time", placeholder='烹饪时间', required)
-			.form-group
-				input.form-control(type='text', name="tips", placeholder='细节提示', required)
-			//.form-group
-				label.btn.btn-default.btn-file 浏览图片
-					input.form-contorl(type='file', name="recipe_image", accept="image/png,image/jpg,image/jpeg")
-			button.btn.btn-primary(type='submit') 提交
-			&nbsp;
-			a(href='/')
-				button.btn.btn-default(type="button") 取消
+	if (user)
+		.center.my-container
+			.mask-white
+			h1.a-black 最近厨艺精进了吗？
+			br
+			form(role='form', action="/share",method="post", style='max-width: 300px;')
+				.form-group
+					input.form-control(type='text', name="recipe_name", placeholder='食谱名', required)
+				.form-group
+					input.form-control(type='text', name="food_materials", placeholder='食材种类', required)
+				.form-group
+					input.form-control(type='text', name="cook_time", placeholder='烹饪时间', required)
+				.form-group
+					input.form-control(type='text', name="tips", placeholder='细节提示', required)
+				//.form-group
+					label.btn.btn-default.btn-file 浏览图片
+						input.form-contorl(type='file', name="recipe_image", accept="image/png,image/jpg,image/	jpeg")
+				button.btn.btn-primary(type='submit') 提交
+				&nbsp;
+				a(href='/')
+					button.btn.btn-default(type="button") 取消
+	if (!user)
+		.mask-dark

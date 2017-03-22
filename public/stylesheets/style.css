@@ -1,74 +1,78 @@
 body {
-  padding: 0;
-  margin: 0;
-  font: 14px ;
-  background-image: url(/images/home.jpg); 
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #fff;
-  text-align: center;
-  height: 100%;
+    padding: 0;
+    margin: 0;
+    font: 14px;
+    background-image: url(/images/home.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #fff;
+    text-align: center;
+    height: 100%;
 }
 
-
-
-.my-container{
-	z-index: 100;
-	color: #fff;
-	margin-top: 200px;
-
+.my-container {
+    z-index: 100;
+    color: #fff;
+    margin-top: 200px;
 }
 
-.mask-dark{
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	z-index: -1;
-	background-color: rgba(0,0,0,0.3);
+.mask-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.mask-white{
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	z-index: -1;
-	background-color: #fff;
+.mask-white {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-color: #fff;
 }
-
 
 .center {
-  width: auto;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 
-.a-home-white{
-	color: #fff;
-}
-.a-home-dark{
-	color: #bbb;
+.a-home-white {
+    color: #fff;
 }
 
-.a-home-container{
-	display: flex;
-	justify-content: space-between;
-}
-.a-home-left .a-home-right{
-	display: flex;
-	flex-direction: row;
-}
-.a-home-left{
-	text-align: left;
+.a-home-dark {
+    color: #bbb;
 }
 
-.a-home-right{
-	text-align: right;	
+.a-home-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.a-home-left .a-home-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.a-home-left {
+    text-align: left;
+}
+
+.a-home-right {
+    text-align: right;
+}
+
+.a-black{
+	color: #000;
 }
