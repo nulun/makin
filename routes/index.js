@@ -28,9 +28,10 @@ router.post('/register', function(req, res) {
 router.get('/login', function(req, res) {
     res.render('login', { user: req.user });
 });
-
+ 
 router.post('/login', passport.authenticate('local'), function(req, res) {
     res.redirect('/');
+    console.log(req.user.username+"成功登陆！")
 });
 
 router.get('/logout', function(req, res) {
