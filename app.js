@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+var Recipe = require('./models/recipe');
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 var share = require('./routes/share')
@@ -44,9 +45,6 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-//recipe collection
-var recipeEntity;
-var Recipe = require('./models/recipe');
 
 // mongoose
 mongoose.connect('mongodb://localhost/cookshare');
