@@ -2,6 +2,12 @@ extends layout
 
 block content
 	if (!user)
+		style.
+			body{
+				background-image: url(/images/home.jpg);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
 		.center.my-container
 			.mask-dark
 			h1 COOK-SHARE
@@ -20,7 +26,6 @@ block content
 					.a-home-left
 						a.a-home-dark(href="") 找回密码
 	if (user)
-		.mask-white
 		nav.navbar.navbar-default
 			.container-fluid
 				.collapse.navbar-collapse

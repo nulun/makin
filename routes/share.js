@@ -3,7 +3,6 @@ var passport = require('passport');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-	console.log(req.user);
 		if (req.user) {
 			res.render('share');
 			console.log("用户"+req.user.username+"打开了分享页面");
