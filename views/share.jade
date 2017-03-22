@@ -1,20 +1,37 @@
-extends layout
+doctype html
+html
+	head
+		title= title
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', media='screen')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap-slider.min.css')
+	body
+		.center.my-container
+			h1.a-black 最近厨艺精进了吗？
+			br
+			form(role='form', action="/share",method="post", style='max-width: 300px;')
+				.form-group
+					input.form-control(type='text', name="recipe_name", placeholder='食谱名', required)
+				.form-group
+					input.form-controll#slide-time(type='text' data-slider-ticks="[0, 15, 30, 45, 60]" 	data-slider-ticks-snap-bounds="1" data-slider-ticks-labels='["0", "15分钟", "30分钟", 	"45分钟", "60分钟"]' data-slider-value="15" name="cook_time")
+				.form-group
+					input.form-control(type='text', name="food_materials", placeholder='食材种类', required)
+				
+				.form-group
+					input.form-control(type='text', name="tips", placeholder='细节提示', required)
+				//.form-group
+					label.btn.btn-default.btn-file 浏览图片
+						input.form-contorl(type='file', name="recipe_image", accept="image/png,image/jpg,image/	jpeg")
+				button.btn.btn-success.btn-block(type='submit') 提交
+				a(href='/') 取消
 
-block content
-	.center.my-container
-		h1.a-black 最近厨艺精进了吗？
-		br
-		form(role='form', action="/share",method="post", style='max-width: 300px;')
-			.form-group
-				input.form-control(type='text', name="recipe_name", placeholder='食谱名', required)
-			.form-group
-				input.form-control(type='text', name="food_materials", placeholder='食材种类', required)
-			.form-group
-				input.form-control(type='text', name="cook_time", placeholder='烹饪时间', required)
-			.form-group
-				input.form-control(type='text', name="tips", placeholder='细节提示', required)
-			//.form-group
-				label.btn.btn-default.btn-file 浏览图片
-					input.form-contorl(type='file', name="recipe_image", accept="image/png,image/jpg,image/jpeg")
-			button.btn.btn-success.btn-block(type='submit') 提交
-			a(href='/') 取消
+	script(src='http://code.jquery.com/jquery.js')
+	script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+	script(src="/javascripts/bootstrap-slider.min.js")
+	script.
+		var slider = new Slider("#slide-time", {
+			ticks: [0, 15, 30, 45, 60],
+			ticks_labels: ["0", "15分钟", "30分钟", 	"45分钟", "60分钟"],
+			ticks_snap_bounds: 1
+		});

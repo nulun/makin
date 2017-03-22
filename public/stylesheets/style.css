@@ -9,8 +9,12 @@ body {
 
 .my-container {
     z-index: 100;
-    color: #fff;
     margin-top: 200px;
+}
+
+.white,
+.lead {
+    color: #fff;
 }
 
 .mask-dark {
@@ -70,6 +74,6 @@ body {
     text-align: right;
 }
 
-.a-black{
-	color: #000;
+.a-black {
+    color: #000;
 }

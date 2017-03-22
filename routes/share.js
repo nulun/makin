@@ -13,12 +13,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    var recipeEntity = new Recipe({ recipe_name: req.body.recipe_name , food_materials: req.body.food_materials, cook_time: req.body.cook_time, tips: req.body.tips });
-    console.log(recipeEntity);
-    recipeEntity.save();
-    next();
-}, function(req, res){
-    res.status(200).send("shared successful!");
+	if (req.user) {
+		var recipeEntity = new Recipe({ recipe_name: req.body.recipe_name , food_materials: req.body.food_materials, cook_time: req.body.cook_time, tips: req.body.tips });
+		console.log(recipeEntity.cook_time);
+		recipeEntity.save();
+		res.status(200).send("shared successful!");
+		}else{
+		res.render('login');
+		console.log("未授权无法分享，跳转到登陆页面");
+	}
 });
 
 module.exports = router;
