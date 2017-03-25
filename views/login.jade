@@ -1,5 +1,6 @@
 extends layout
-
+block head
+  - var titleVar = "登陆"
 block content
   style.
       body{
@@ -9,19 +10,19 @@ block content
       }
   .center.my-container
     .mask-dark
-    h1.white COOK-SHARE
+    h1.white.rem3 欢迎回来
     p.lead 与世界分享你的美味心得
     br
-    form(role='form', action="/login",method="post", style='max-width: 300px;')
-      .form-group
-          input.form-control(type='text', name="username", placeholder='用户名', required, oninvalid="this.setCustomValidity('用户名不能为空')")
-      .form-group
-        input.form-control(type='password', name="password", placeholder='密码', required, oninvalid="this.setCustomValidity('密码不能为空')")
-      button.btn.btn-primary.btn-block(type='submit') 登陆
+    form.ui.form(role='form', action="/login",method="post", style='max-width: 300px;')
+      .field
+          input.ui.input(type='text', name="username", placeholder='用户名', required, oninvalid="this.setCustomValidity('用户名不能为空')")
+      .field
+        input.ui.input(type='password', name="password", placeholder='密码', required, oninvalid="this.setCustomValidity('密码不能为空')")
+      button.fluid.ui.olive.inverted.big.button(type='submit') 登陆
       br
       .a-home-container
         .a-home-right
-          a.a-home-white(href="http://cook-share.com") 注册
+          a.a-home.white(href="http://cook-share.com") 注册
         .a-home-left
-          a.a-home-dark(href="") 找回密码
+          a.a-home.dark(href="") 找回密码
 
