@@ -4,24 +4,37 @@ $(".secondary a").on("click", function() {
 });
 
 
-
-$(".click-login").on("click", function() {
-    $(".login-container").removeClass("hidden");
-    $(".login-container").removeClass("slide-out-right");
-    $(".signup-container").removeClass("slide-in-left");
-    $(".signup-container").addClass("slide-out-left");
-    $(".login-container").addClass("slide-in-right");
+//切换效果
+$(".click-secondary").on("click", function() {
+    $(".slide-container-secondary").removeClass("my-hidden");
+    $(".slide-container-secondary").removeClass("slide-out-right");
+    $(".slide-container-primary").removeClass("slide-in-left");
+    $(".slide-container-primary").addClass("slide-out-left");
+    $(".slide-container-secondary").addClass("slide-in-right");
 });
 
 
-$(".click-signup").on("click", function() {
-	 $(".login-container").removeClass("slide-in-right");
-    $(".signup-container").removeClass("slide-out-left");
-    $(".login-container").addClass("slide-out-right");
-    $(".signup-container").addClass("slide-in-left");
+$(".click-primary").on("click", function() {
+    $(".slide-container-secondary").removeClass("slide-in-right");
+    $(".slide-container-primary").removeClass("slide-out-left");
+    $(".slide-container-secondary").addClass("slide-out-right");
+    $(".slide-container-primary").addClass("slide-in-left");
 });
 
+//注册过的用户默认打开登陆
+$(".clickLocalStorage").on("click", function() {
+    window.localStorage.defaultForm = true;
+});
 
-
-
+window.onload = function(){
+    if (window.localStorage.defaultForm) {
+        $(".click-secondary").click();
+    };
+    console.log("  ____ ___   ___  _  ______  _   _    _    ____  _____ ");
+    console.log(" / ___/ _ \\ / _ \\| |/ / ___|| | | |  / \\  |  _ \\| ____|");
+    console.log("| |  | | | | | | | ' /\\___ \\| |_| | / _ \\ | |_) |  _|  ");
+    console.log("| |__| |_| | |_| | . \\ ___) |  _  |/ ___ \\|  _ <| |___ ");
+    console.log(" \\____\\___/ \\___/|_|\\_\\____/|_| |_/_/   \\_\\_| \\_\\_____|");
+    
+};
 

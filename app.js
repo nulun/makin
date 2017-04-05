@@ -106,9 +106,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-//https
-//https.createServer(options, app).listen(443);
-
 secureServer.listen(443);
 
 module.exports = app;
