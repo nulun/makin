@@ -1,7 +1,9 @@
 var express = require('express');
 var Recipe = require('../models/recipe');
 var router = express.Router();
-
+var fs = require('fs');
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 router.get('/', function(req, res, next) {
 		if (req.user) {
 			res.render('share');
@@ -12,10 +14,14 @@ router.get('/', function(req, res, next) {
 		}
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', upload.single('recipe_image'), function(req, res, next) {
 	if (req.user) {
-		var recipeEntity = new Recipe({ recipe_name: req.body.recipe_name , food_materials: req.body.food_materials, cook_time: req.body.cook_time, tips: req.body.tips });
-		console.log(recipeEntity.cook_time);
+		var recipeEntity = new Recipe({ recipe_name: req.body.recipe_name, recipe_detail:req.body.recepe_detail });
+		console.log("图片已上传");
+		console.log(req.file);
+		//console.log(typeof(req.file.path));
+		recipeEntity.recipe_image.path = req.file.path;
+		recipeEntity.recipe_image.contentType = req.file.mimetype;
 		recipeEntity.save();
 		res.status(200).send("shared successful!");
 		}else{

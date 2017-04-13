@@ -2,16 +2,15 @@ doctype html
 html
   head
     block head
-    - var theTitle= titleVar || "cook-share"
+    - var theTitle= titleVar || "原本料理"
     title #{theTitle}
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    //link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', media='screen')
     link(rel='stylesheet' href='/semantic/dist/semantic.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     block content
 
-  script(src='https://code.jquery.com/jquery.js')
-  //script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
-  script(src='/semantic/dist/semantic.min.js')
+  script(src='https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js')
+  script(src='https://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.js')
+  script(src='https://cdn.bootcss.com/vue/2.2.6/vue.min.js')
   script(src='/javascripts/script.js')

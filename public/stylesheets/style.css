@@ -1,64 +1,92 @@
 @font-face {
-  font-family: 'hyys';
-  src: url('../font/hyys.eot');
-  src:
-    url('../font/hyys.eot?#font-spider') format('embedded-opentype'),
-    url('../font/hyys.woff2') format('woff2'),
-    url('../font/hyys.woff') format('woff'),
-    url('../font/hyys.ttf') format('truetype'),
-    url('../font/hyys.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'hyys';
+    src: url('../font/hyys.eot');
+    src: url('../font/hyys.eot?#font-spider') format('embedded-opentype'), url('../font/hyys.woff2') format('woff2'), url('../font/hyys.woff') format('woff'), url('../font/hyys.ttf') format('truetype'), url('../font/hyys.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
+
 body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", 微软雅黑, SimSun, 宋体, Heiti, 黑体, sans-serif;
     padding: 0;
     margin: 0;
     font: 14px;
     background-color: #fff;
     text-align: center;
     height: 100%;
+    overflow-y: hidden;
+}
+
+.share-box {
+    background-color: #eeeeee;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23dddddd' fill-opacity='0.34'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+#particles-js {
+    z-index: -999;
+}
+
+.d-bg {
+    z-index: -1;
+    /*background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+    background-repeat: no-repeat;
+    background-size: cover;*/
+}
+
+.mask {
+    z-index: 5;
 }
 
 .hyys {
     font-family: 'hyys';
 }
+
+.error-color {
+    color: rgb(145, 45, 43);
+}
+
+.success-color {
+    color: rgb(26, 83, 27);
+}
+
+
 /*链接样式*/
 
 a:hover {
     cursor: pointer;
 }
 
-a.a-home:hover {
+a.a-door:hover {
     color: #000;
 }
 
-.a-home {
+.a-door {
     cursor:
 }
 
-.a-home-container {
+.a-door-box {
     display: flex;
     justify-content: space-between;
 }
 
-.a-home-left .a-home-right {
+.a-door-left .a-door-right {
     display: flex;
     flex-direction: row;
 }
 
-.a-home-left {
+.a-door-left {
     text-align: left;
 }
 
-.a-home-right {
+.a-door-right {
     text-align: right;
 }
 
 
 /*布局*/
 
-.my-container {
+.d-box {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -68,7 +96,7 @@ a.a-home:hover {
     height: 500px;
 }
 
-.h-form-cont{
+.d-form-box {
     position: absolute;
     left: 0;
     top: 0;
@@ -76,9 +104,10 @@ a.a-home:hover {
     z-index: 10;
 }
 
-.rel-cont{
+.rel-box {
     position: relative;
 }
+
 .center {
     /*width: auto;
     display: table;
@@ -90,12 +119,12 @@ a.a-home:hover {
     text-align: center;
 }
 
-.body-container {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+.max-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -105,9 +134,10 @@ a.a-home:hover {
     color: #fff;
 }
 
-.h-color{
+.d-color {
     color: #212324;
 }
+
 .dark {
     color: #bbb;
 }
@@ -124,54 +154,21 @@ a.a-home:hover {
 
 .lead {
     font-size: 1.8rem;
-    margin-bottom: 0;
-}
-
-.mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 5;
-    background-color: rgba(0, 0, 0, 0);
-}
-.mask-logo{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 300px;
-    height: 500px;
-    z-index: 100;
-    background-color: rgba(0,0,0,0);
-}
-.mask-white {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    background-color: #fff;
+    margin-bottom: -15px;
+    margin-top: 15px;
 }
 
 
-input:focus{
-	border:1px solid rgb(255,255,255) !important;
-}
-
-/*.my-container input{
-	background-color: rgba(255,255,255,.15) !important;
+/*.d-box input{
+    background-color: rgba(255,255,255,.15) !important;
 }*/
-::selection{
-	background-color: #222 !important;
-	color: #eee !important;
+
+::selection {
+    background-color: #222 !important;
+    color: #eee !important;
 }
 
 
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset !important;
-}
 /*覆盖semantic*/
 
 .margin0 {
