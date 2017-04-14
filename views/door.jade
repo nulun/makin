@@ -9,11 +9,17 @@ block content
 	.mask.max-box
 	.d-box
 		p.d-color.my-rem.hyys 原本料理
-		p.lead.hyys live authentically
 		br
 		.rel-box
 			.d-form-box.slide-box-1
-				form.ui.form#login-fm(role="form", style="max-width: 300px;")
+				.fast-login-box.my-hidden
+					.user-avatar
+					.fast-login-btn.ui.buttons
+						button.ui.black.button#login-btn-2
+						.or(data-text="或")
+						button.ui.button#exit-fast-login 切换账户
+				form.ui.form#login-fm.my-hidden(role="form")
+					p.login-lead 🍜
 					.field
 						input.ui.input#login-username(type="text", name="username", placeholder="用户名", required, oninvalid="this.setCustomValidity('用户名不能为空')")
 					.field
@@ -22,16 +28,17 @@ block content
 					br
 					.a-door-box
 						.a-door-right
-							a.a-door.d-color.click-2.d-slide 注册
-						.a-door-left
 							a.a-door.d-color(href="") 找回密码
+						.a-door-left
+							a.a-door.d-color.click-2.d-slide 注册
 			.d-form-box.slide-box-2.my-hidden
-				form.ui.form(role='form', action="/register", method="post", style='max-width: 300px;')
+				form.ui.form#register-fm(role='form', action="/register", method="post")
+					p.register-lead 🍜
 					.field
 						input.ui.input#register-username(type='text', name="username", placeholder='用户名', required, oninvalid	="this.setCustomValidity('用户名不能为空')")
 					.field
 						input.ui.input#register-password(type='password', name="password", placeholder='密码', required, oninvalid="this.setCustomValidity('密码不能为空')")
-					button.fluid.ui.black.big.button.clickLocalStorage#register-btn(type='submit') 注册
+					button.fluid.ui.black.big.button.clickLocalStorage.disabled#register-btn(type='submit') 注册
 					br
 					.a-door-box
 						.a-door-right

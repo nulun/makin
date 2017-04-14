@@ -31,7 +31,31 @@ var signedUser = window.localStorage.defaultForm; //把上一步保存的true值
 window.onload = function() { //加载完页面
     if (!signedUser) {
         $(".d-slide").click(); //如果是未注册过的用户，就让js点击一下[注册]按钮
-    }
+    };
+    setTimeout(function() {
+        console.log("time");
+        console.log($("#login-username").val());
+        if ($("#login-username").val() != '') {
+            $("#login-btn-2").text("以" + $("#login-username").val() + "登陆");
+            
+            $(".fast-login-box").removeClass('my-hidden').transition('fade in');
+        }else{
+            $("#login-fm").removeClass('my-hidden');
+        };
+    }, 100);
+
+};
+
+$("#login-btn-2").click(function(){
+    $("#login-btn").click();
+});
+
+$("#exit-fast-login").click(function(){
+    $(".fast-login-box").removeClass('visible').hide();
+    $("#login-fm").transition('slide down');
+});
+if (!localStorage.userAvatar) {
+    $(".user-avatar").css('background-image', 'url("/images/user-avatars/user.png")');
 };
 
 //=============================================================================================
@@ -47,6 +71,7 @@ var vueApp1 = new Vue({
 
 var login = function() {
     $("#login-btn").addClass('loading');
+    $("#login-btn-2").addClass('loading');
     $.ajax({
         type: "POST",
         url: '/login',
@@ -64,8 +89,9 @@ var login = function() {
             //console.log(textStatus.status);
             //console.log(errorThrown);
             $("#login-btn").removeClass("loading"); //删除按钮的加载动画
+            $("#login-btn-2").removeClass('loading');
             $("input").transition('shake'); //出现错误摇动输入框动画
-            $("p.lead").text("用户名或密码错误").addClass("error-color").transition('fade in');
+            $("p.login-lead").text("用户名或密码错误").addClass("error-color").transition('fade in');
         }
     });
 };
@@ -74,22 +100,23 @@ var login = function() {
 
 var hasTried = false;
 var formValid = function() {
-    var u = $("#login-username").val(), p = $("#login-password").val();
+    var u = $("#login-username").val(),
+        p = $("#login-password").val();
     if (hasTried) {
         if (u && p) {
-            $("p.lead").text("live authentically").removeClass("error-color");
+            $("p.login-lead").text("🍜").removeClass("error-color");
             $("#login-password").parent().removeClass('error');
             $("#login-username").parent().removeClass('error');
         } else if (u && !p) {
-            $("p.lead").text("请输入密码").addClass("error-color");
+            $("p.login-lead").text("请输入密码").addClass("error-color");
             $("#login-password").parent().addClass('error');
             $("#login-username").parent().removeClass('error');
         } else if (!u && p) {
-            $("p.lead").text("请输入用户名").addClass("error-color");
+            $("p.login-lead").text("请输入用户名").addClass("error-color");
             $("#login-username").parent().addClass('error');
             $("#login-password").parent().removeClass('error');
         } else {
-            $("p.lead").text("请输入用户名和密码").addClass("error-color");
+            $("p.login-lead").text("请输入用户名和密码").addClass("error-color");
             $("#login-username").parent().addClass('error');
             $("#login-password").parent().addClass('error');
         };
@@ -106,7 +133,7 @@ $("#login-btn").click(function(e) { //点击登陆按钮
     hasTried = true;
     if ($("#login-username").val() && $("#login-password").val()) {
         login();
-    }else{
+    } else {
         formValid();
     };
 });
@@ -127,31 +154,38 @@ $(".exit").click(function() {
     $("#body-box").transition('fade'); //逐渐隐去
 })
 
-//=============================================================================================
+//用户名ajax检验=================================================================================
 
 var isError = false;
 var isChange = true;
 var verify = function() {
-    if ($("#register-username").val() && isChange) {
+    var u = $("#register-username"),
+        p = $("#register-password");
+    if (u.val() && isChange) {
         $.ajax({
             type: "POST",
             url: "/verify",
             data: {
-                username: $("#register-username").val()
+                username: u.val()
             },
             success: function(data, textStatus, jqXHR) {
                 if (data) {
                     //console.log(data);  --> true
                     //console.log("用户名已存在");
-                    $("#register-username").transition('jiggle');
-                    $("p.lead").text("此名称已被注册").removeClass("success-color").addClass("error-color").transition('fade in');
-                    $("#register-username").parent().addClass("error");
+                    u.transition('jiggle');
+                    $("p.register-lead").text("此名称已被注册").removeClass("success-color").addClass("error-color").transition('fade in');
+                    u.parent().addClass("error");
                     $("#register-btn").addClass('disabled');
                     isError = true;
                     isChange = false;
                 } else {
-                    $("p.lead").text("恭喜，此名称可用").removeClass("error-color").addClass("success-color").transition('fade in');
+                    $("p.register-lead").text("此名称可用").removeClass("error-color").addClass("success-color").transition('fade in');
+                    u.parent().removeClass('error');
+                    isError = false;
                     isChange = false;
+                    if ($("#register-username").val() && $("#register-password").val()) {
+                        $("#register-btn").removeClass('disabled');
+                    };
                 };
             },
             error: function(textStatus, errorThrown) {
@@ -161,43 +195,41 @@ var verify = function() {
         });
     };
 };
-$("#register-username").blur(verify);
+
+//用户输入完成后触发verify()================================================================================
+
+var typingTimer; //timer identifier
+var doneTypingInterval = 500; //time in ms (5 seconds)
+
+$('#register-username').keyup(function() { //on keyup, start the countdown
+    isChange = true;
+    clearTimeout(typingTimer);
+    if ($('#register-username').val()) {
+        typingTimer = setTimeout(verify, doneTypingInterval);
+    }
+});
+
 
 $(".click-2").click(verify);
 
-$("#register-username").on("keypress keyup", function() {
-    if (isError) {
-        isChange = true;
-        $("#register-username").parent().removeClass("error");
-        $("#register-btn").removeClass('disabled');
+//注册按钮可否点击=================================================================================
 
-
-    };
+var removeDisabled = function() {
+    if ($("#register-username").val() && $("#register-password").val()) {
+        if (!isError) {
+            $("#register-btn").removeClass('disabled');
+        }; 
+    }else{
+        $("#register-btn").addClass('disabled');
+    }
+};
+$("#register-username").on("keypress keyup focus blur", function() {
+    removeDisabled();
 });
 
-$(".click-1").on("click", function() {
-    $("p.lead").text("live authentically").removeClass("error-color").removeClass("success-color").transition('fade in');
+$("#register-password").on("keypress keyup focus blur", function() {
+    removeDisabled();
 });
-
-//=============================================================================================
-
-
-
-//=============================================================================================
-
-
-
-//=============================================================================================
-
-
-
-//=============================================================================================
-
-
-
-//=============================================================================================
-
-
 
 //=============================================================================================
 

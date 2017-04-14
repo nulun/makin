@@ -39,7 +39,8 @@ router.post('/verify', function(req, res) {
 router.post('/register', function(req, res) {
     Account.register(new Account({ username: req.body.username }), req.body.password, function(err, account) {
         if (err) {
-            return res.render('home', { account: account });
+            //return res.render('home', { account: account });
+            
         }
 
         passport.authenticate('local')(req, res, function() {
