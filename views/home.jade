@@ -4,40 +4,32 @@ extends layout
 block content
 	#body-box.max-box
 		.slide-box-1.max-box
-			.ui.secondary.menu.h-tab
+			.ui.secondary.pointing.menu.h-tab
 				a.item.active 最近流行
 				a.item 关注
-				a.item 我的喜欢
+				a.item.click-2 撰写新食谱
 				.right.menu
-					.item
-						.ui.icon.input
-							input(type="text" placeholder="搜索...")
-							i.search.link.icon
-					.ui.simple.dropdown.item #{user.username}
-						.menu.margin0
-							.item 设置
-							.item(onclick="location.href='/account'") 账户
-							.item.exit(onclick="location.href='/logout'") 退出登录
-					.ui.animated.fade.button.item.click-2
-						.visible.content 撰写新食谱
-						.hidden.content
-							i.arrow.right.icon
+					.pointer.ui.item(onclick="location.href='/profile'") #{user.username}
 		.slide-box-2.my-hidden.max-box.share-box
-			.ui.secondary.menu
-				.ui.animated.fade.button.item.click-1
-					.visible.content 放弃并返回
-					.hidden.content
-						i.arrow.left.icon
-			.d-box#v-wrap
+			.s-box#v-wrap
+				#recipe-image.image-wrapper
+					.img-mask
+					img#uploaded-image.center
+					i.photo.icon
 				p {{ message }}
 				br
 				form.ui.form(role='form', action="/share",method="post", enctype="multipart/form-data", style='max-width: 300px;')
 					.field
 						input.ui.input(type='text', name="recipe_name", v-model="message", placeholder='料理标题', required)
 					.field
-						input.ui.input(type='file', name="recipe_image", accept="image/png,image/jpg,image/jpe")
-					//.field
-						input.ui.input(type='text', name="food_materials", placeholder='食材种类', required)
+						input.ui.input(type='text', name="brief", placeholder='一句话介绍，可不填')
 					.field
-						input.ui.input(type='text', name="recipe_detail", placeholder='料理过程', required)
+						input.ui.input#upload-recipe-image(type='file', name="recipe_image", accept="image/png,image/jpg,image/jpeg")
+					.field
+						input.ui.input(type='text', name="materials", placeholder='食材种类', required)
+					.field
+						input.ui.input(type='text', name="procedure", placeholder='料理过程', required)
 					button.fluid.ui.black.big.button(type='submit') 提交	
+append js
+	script(src='/javascripts/home.js')
+	script(src='/javascripts/adaptive-backgrounds.js')

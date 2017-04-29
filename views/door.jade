@@ -19,7 +19,7 @@ block content
 						.or(data-text="或")
 						button.ui.button#exit-fast-login 切换账户
 				form.ui.form#login-fm.my-hidden(role="form")
-					p.login-lead 🍜
+					p.login-lead
 					.field
 						input.ui.input#login-username(type="text", name="username", placeholder="用户名", required, oninvalid="this.setCustomValidity('用户名不能为空')")
 					.field
@@ -33,7 +33,7 @@ block content
 							a.a-door.d-color.click-2.d-slide 注册
 			.d-form-box.slide-box-2.my-hidden
 				form.ui.form#register-fm(role='form', action="/register", method="post")
-					p.register-lead 🍜
+					p.register-lead
 					.field
 						input.ui.input#register-username(type='text', name="username", placeholder='用户名', required, oninvalid	="this.setCustomValidity('用户名不能为空')")
 					.field
@@ -45,5 +45,7 @@ block content
 							a.a-door.d-color.click-1 登陆
 						.a-door-left
 							a.a-door.d-color(href="") 找回密码
-		script(src='https://ohesaqgit.qnssl.com/js/particles/particles.js')
-		script(src='https://ohesaqgit.qnssl.com//js/particles/app.js')
+append js
+	script(src='/javascripts/door.js')
+	script(src='https://ohesaqgit.qnssl.com/js/particles/particles.js')
+	script(src='https://ohesaqgit.qnssl.com//js/particles/app.js')
