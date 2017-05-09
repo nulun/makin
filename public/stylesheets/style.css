@@ -68,13 +68,6 @@ body {
     transform-origin: 100% 100%;
 }
 
-.postcode {
-    position: absolute;
-    top: 550px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 .h-javascript:before,
 .h-javascript:after {
     background-image: linear-gradient(-225deg, #B7F8DB 0%, #50A7C2 100%) !important;
@@ -123,17 +116,11 @@ textarea {
     resize: none !important;
 }
 
-.postcode {
-    background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%) !important;
-    color: #fff !important;
-}
-
 .heart {
     cursor: pointer;
     position: relative;
     width: 27px;
     height: 24.3px;
-    margin-bottom: 2px;
 }
 
 .heart:before,
@@ -191,7 +178,7 @@ input:focus {
 
 .newcode {
     position: relative;
-    transition: all ease-in-out 0.3s;
+    transition: all ease 0.3s;
     margin: auto 10px;
     cursor: pointer;
     width: 30px;
@@ -208,7 +195,7 @@ input:focus {
     position: absolute;
     width: 20px;
     height: 2px;
-    background-color: rgb(67, 79, 92);
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 }
 
 .newcode:before {
@@ -222,18 +209,70 @@ input:focus {
     top: 14px;
 }
 
+.layout-box {
+    width: 84px;
+    margin: auto 0;
+}
+
+.subm-box {
+    padding-left: 20px;
+    z-index: 999;
+    background-color: #fff;
+    width: 84px;
+    height: 30px;
+    position: absolute;
+    top: 17px;
+    float: right;
+    right: 10px;
+    margin: auto 0;
+}
+
+.submcode {
+    float: right;
+    position: relative;
+    transition: all ease 0.3s;
+    cursor: pointer;
+    width: 84px;
+    height: 30px;
+    font-size: 2rem;
+}
+
+.submcode:before,
+.submcode:after {
+    border-radius: 2px;
+    content: '';
+    top: 0;
+    position: absolute;
+    height: 2px;
+    background-image: linear-gradient(to top, #43e97b 0%, #38f9d7 100%);
+}
+
+.submcode:before {
+    width: 15px;
+    left: 35px;
+    top: 20px;
+    transform: rotate(45deg);
+}
+
+.submcode:after {
+    width: 28px;
+    transform: rotate(135deg);
+    left: 43px;
+    top: 16px;
+}
+
 .hidecode {
     -webkit-transform-origin: 50% 50%;
     width: 30px;
     height: 30px;
-    transform: rotate(45deg);
+    transform: rotate(45deg) scale(1.4);
     transform-origin: 50% 50%;
-    transition: all ease-in-out 0.3s;
+    transition: all ease 0.3s;
 }
 
 .hidecode:before,
 .hidecode:after {
-    background-color: rgb(234, 67, 53);
+    background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
 }
 
 .newpost-old {
@@ -254,27 +293,24 @@ input:focus {
 
 .stay,
 .newpost {
+    font-family: Consolas, Monaco, monospace, 'Source Code Pro';
+    margin-bottom: 10px;
     color: #eee;
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%) !important;
     padding: 10px;
-    position: absolute;
-    top: 20px;
     line-height: 1.3rem;
     font-size: 1rem;
     border: .5px solid #dedede !important;
     width: 100%;
-    max-width: 800px;
-    height: 500px;
+    height: 100%;
     z-index: 999;
     overflow: auto;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .newpost-mask {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vh;
+    height: 100vh;
     top: 0;
     left: 0;
     background-color: #f3f5f6;
@@ -392,9 +428,9 @@ a.item {
 }
 
 .small-mask {
+    padding-bottom: 64px;
     width: 100%;
     height: 100%;
-    position: fixed;
     z-index: 100;
     background-color: #f3f5f6;
 }
@@ -491,6 +527,7 @@ code {
 }
 
 .ui.menu {
+    position: relative !important;
     height: 64px;
     background-color: #fff !important;
     margin: auto !important;

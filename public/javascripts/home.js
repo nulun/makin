@@ -237,10 +237,18 @@ $('.newcode').click(function() {
   if (isshow) {
     $(this).removeClass('hidecode');
     $('.small-mask').removeClass('my-hidden').transition('fade down');
+    $('body').css('overflow', 'scroll');
+    $('body').css('background', '#f3f5f6');
+    $('.menu-box').css('transform', 'translateX(0px)');
+    $('.subm-box').removeClass('my-hidden').transition('fade down');
     isshow = false;
   } else {
     $(this).addClass('hidecode');
     $('.small-mask').removeClass('my-hidden').transition('fade down in');
+    $('body').css('overflow', 'hidden');
+    $('body').css('background', '#fff');
+    $('.menu-box').css('transform', 'translateX(-4px)');
+    $('.subm-box').removeClass('my-hidden').transition('fade down in');
     isshow = true;
   }
 })
