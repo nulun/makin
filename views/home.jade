@@ -3,13 +3,158 @@ extends layout
 
 block content
 	#body-box.max-box
+		.newpost-box.my-hidden
+			form.ui.form(role='form', action="/postcode",method="post")
+				.field
+					label your code
+					textarea(name = 'code', rows = '12')
+				.field
+					label your code language
+					input(type = 'text', name='lang')
+				.field
+					label say something?
+					input(type = 'text', name='title')
+				button.ui.button(type = 'submit') ok, that's it
+		.newpost-mask.my-hidden.pointer
+			button.ui.massive.button.postcode 一个巨大肥硕丑陋无比的发布按钮
 		.slide-box-1.max-box
-			.ui.secondary.pointing.menu.h-tab
-				a.item.active 最近流行
-				a.item 关注
-				a.item.click-2 撰写新食谱
-				.right.menu
-					.pointer.ui.item(onclick="location.href='/profile'") #{user.username}
+			.menu-box
+				.ui.secondary.pointing.menu.h-tab
+					textarea.newpost(placeholder='', spellcheck="false")
+					.logo.pointer(onclick="location.href='/'")
+						p instacode.
+					//a.item.active Trending
+					//a.item Followed
+					//a.item.click-2 撰写新食谱
+					.like-color.nav-heart
+					canvas.h-avatar.pointer#h-avatar(name = '#{user.username}', onclick="location.href='/profile'")
+			.h-container
+				.h-box(name='#{code[0]._id}')
+					.meta
+						canvas.avatar.pointer
+						.name
+							a #{code[0].postedBy}
+						.time
+							p #{code[0].date}
+						.lang
+							p
+					.code
+						pre
+							code #{code[0].code}
+					.foot
+						if (code[0].liked)
+							.heart.icon.liked
+						if (!code[0].liked)
+							.empty.heart.icon
+						p #{code.likedBy[0]}
+				.h-box(name='#{code[1]._id}')
+					.meta
+						canvas.avatar.pointer
+						.name
+							a #{code[1].postedBy}
+						.time
+							p #{code[1].date}
+						.lang
+							p
+					.code
+						pre
+							code #{code[1].code}
+					.foot
+						if (code[1].liked)
+							.heart.icon.liked
+						if (!code[1].liked)
+							.empty.heart.icon
+						p #{code.likedBy[1]}
+				.h-box(name='#{code[2]._id}')
+					.meta
+						canvas.avatar.pointer
+						.name
+							a #{code[2].postedBy}
+						.time
+							p #{code[2].date}
+						.lang
+							p
+					.code
+						pre
+							code #{code[2].code}
+					.foot
+						if (code[2].liked)
+							.heart.icon.liked
+						if (!code[2].liked)
+							.empty.heart.icon
+						p #{code.likedBy[2]}
+				.h-box(name='#{code[3]._id}')
+					.meta
+						canvas.avatar.pointer
+						.name
+							a #{code[3].postedBy}
+						.time
+							p #{code[3].date}
+						.lang
+							p
+					.code
+						pre
+							code #{code[3].code}
+					.foot
+						if (code[3].liked)
+							.heart.icon.liked
+						if (!code[3].liked)
+							.empty.heart.icon
+						p #{code.likedBy[3]}
+				.h-box(name='#{code[4]._id}')
+					.meta
+						canvas.avatar.pointer
+						.name
+							a #{code[4].postedBy}
+						.time
+							p #{code[4].date}
+						.lang
+							p
+					.code
+						pre
+							code #{code[4].code}
+					.foot
+						if (code[4].liked)
+							.heart.icon.liked
+						if (!code[4].liked)
+							.empty.heart.icon
+						p #{code.likedBy[4]}
+				.h-box(name='#{code[5]._id}')
+					.meta
+						canvas.avatar.pointer
+						.name
+							a #{code[5].postedBy}
+						.time
+							p #{code[5].date}
+						.lang
+							p
+					.code
+						pre
+							code #{code[5].code}
+					.foot
+						if (code[5].liked)
+							.heart.icon.liked
+						if (!code[5].liked)
+							.empty.heart.icon
+						p #{code.likedBy[5]}
+				.h-box(name='#{code[6]._id}')
+					.meta
+						canvas.avatar.pointer
+						.name
+							a #{code[6].postedBy}
+						.time
+							p #{code[6].date}
+						.lang
+							p
+					.code
+						pre
+							code #{code[6].code}
+					.foot
+						if (code[6].liked)
+							.heart.icon.liked
+						if (!code[6].liked)
+							.empty.heart.icon
+						p #{code.likedBy[6]}
 		.slide-box-2.my-hidden.max-box.share-box
 			.s-box#v-wrap
 				#recipe-image.image-wrapper
@@ -32,4 +177,5 @@ block content
 					button.fluid.ui.black.big.button(type='submit') 提交	
 append js
 	script(src='/javascripts/home.js')
-	script(src='/javascripts/adaptive-backgrounds.js')
+	script(src='/javascripts/ref/highlight.pack.js')
+	script hljs.initHighlightingOnLoad()

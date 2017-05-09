@@ -3,6 +3,7 @@ var passport = require('passport');
 var Account = require('../models/account');
 var Recipe = require('../models/recipe');
 var Profile = require('../models/profile');
+var Code = require('../models/code');
 var router = express.Router();
 var fs = require('fs');
 var multer = require('multer');
@@ -11,22 +12,38 @@ var upload = multer({ dest: 'public/images/user-avatars' });
 router.get('/', function(req, res) {
   if (req.user) {
     Profile.find({ 'username': req.user.username }).exec((err, doc) => {
-      var userObj = {};
+      var userObj = {
+        username: req.user.username,
+        avatar: 'url("/images/user-avatars/user.png")'
+      };
       if (doc[0]) {
         if (doc[0].name) {
           userObj.username = doc[0].name;
         };
         //---------------
-        if (doc[0].avatar) {
+        if (doc[0].avatar && doc[0].avatar.path) {
           var avatarPath = doc[0].avatar.path.substr(6);
           userObj.avatar = 'url("' + avatarPath + '")';
-          console.log(userObj.avatar);
         };
-      } else {
-        userObj.username = req.user.username;
-        userObj.avatar = 'url("/images/user-avatars/user.png")';
       };
-      res.render('home', { user: userObj });
+      Code.find({}).sort('-date').exec((err, code) => {
+        var codeObj = code;
+        codeObj.likedBy = [];
+        for (var i = 0; i < code.length; i++) {
+          var z = '';
+          for (var j = 0; j < code[i].likes.length; j++) {
+            var a = code[i].likes[j].toString().split(',');
+            var r = a[1].slice(6, -1);
+            if (r == req.user.username) {
+              codeObj[i].liked = true;
+            }
+            var z = z + ', ' + r;
+          }
+          codeObj.likedBy[i] = z.slice(1);
+        }
+        console.log(codeObj.likedBy);
+        res.render('home', { user: userObj, code: codeObj });
+      });
     });
 
   } else {
@@ -34,6 +51,8 @@ router.get('/', function(req, res) {
 
   }
 });
+
+//======================================================
 
 router.get('/register', function(req, res) {
   res.render('home', {});
@@ -92,22 +111,20 @@ router.get('/ping', function(req, res) {
 router.get('/profile', function(req, res) {
   if (req.user) {
     Profile.find({ 'username': req.user.username }).exec((err, doc) => {
-      var userObj = {};
+      var userObj = {
+        username: req.user.username,
+        avatar: 'url("/images/user-avatars/user.png")'
+      };
       //---------------
       if (doc[0]) {
         if (doc[0].name) {
           userObj.username = doc[0].name;
         };
         //---------------
-        if (doc[0].avatar) {
-          userObj.avatar = doc[0].avatar;
+        if (doc[0].avatar && doc[0].avatar.path) {
           var avatarPath = doc[0].avatar.path.substr(6);
           userObj.avatar = 'url("' + avatarPath + '")';
-          console.log(userObj.avatar);
         };
-      } else {
-        userObj.username = req.user.username;
-        userObj.avatar = 'url("/images/user-avatars/user.png")';
       };
       //---------------
       res.render('profile', { user: userObj });
@@ -160,7 +177,7 @@ router.post('/update/profile/avatar', upload.single('avatar'), function(req, res
       };
       Profile.find(query).exec((err, doc) => {
         var deleteUrl = doc[0].avatar.path;
-        fs.unlink( deleteUrl, (err) => {
+        fs.unlink(deleteUrl, (err) => {
           if (err) throw err;
           console.log('原头像' + doc[0].avatar.path + '已删除');
         });
@@ -172,6 +189,65 @@ router.post('/update/profile/avatar', upload.single('avatar'), function(req, res
   } else {
     res.render('/');
     console.log("未登陆，跳转到登陆页面");
+  };
+});
+
+//=========================================================
+
+router.post('/postcode', function(req, res, next) {
+  if (req.user) {
+    var codeEntity = new Code({
+      postedBy: req.user.username,
+      code: req.body.code,
+      title: req.body.title,
+      lang: req.body.lang
+    });
+    codeEntity.save();
+    res.status(200).send("post successful!");
+  } else {
+    res.render('/');
+    console.log("未登陆，跳转到登陆页面");
+  }
+})
+
+//===================================================
+
+router.put('/like', function(req, res) {
+  if (req.user) {
+    const ifLiked = { '_id': req.body._id, likes: { $elemMatch: { by: req.user.username } } };
+    Code.find(ifLiked).exec((err, resp) => {
+      if (err) {
+        console.log(err);
+      };
+      if (!resp[0]) {
+        // 如果查找不到内容，则赞
+        console.log('未赞，已赞...');
+        const query = { '_id': req.body._id };
+        const doc = { $push: { 'likes': { 'val': true, 'by': req.user.username } } };
+
+        function callback(err, num) {
+          console.log(num);
+        };
+        Code.update(query, doc, callback);
+        res.status(200).send("成功赞了这个内容");
+      } else {
+        //否则取消赞
+        console.log('已赞，取消赞...');
+        console.log(req.body._id);
+        const rquery = { '_id': req.body._id };
+        const remv = { $pull: { 'likes': { 'val': true, 'by': req.user.username } } };
+
+        function callback(err, num) {
+          console.log(num);
+        };
+        Code.update(rquery, remv, callback);
+        res.status(200).send("已取消赞");
+      }
+    });
+
+  } else {
+    res.redirect('/');
+    console.log("未登陆无法进行此操作，跳转到登陆页面");
   };
 });
 

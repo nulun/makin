@@ -2,20 +2,24 @@ extends layout
 
 block head
 	-if(user){var titleVar = "cook-share";}else{var titleVar = "登陆"}
+	style.
+		body {
+			overflow: hidden;
+		}
 
 block content
 	#particles-js.max-box
 	.d-bg.max-box
 	.mask.max-box
 	.d-box
-		p.d-color.my-rem.hyys 原本料理
+		p.d-color instacode
 		br
 		.rel-box
 			.d-form-box.slide-box-1
 				.fast-login-box.my-hidden
-					.user-avatar
+					canvas.user-avatar
 					.fast-login-btn.ui.buttons
-						button.ui.black.button#login-btn-2
+						button.ui.black.button#login-btn-2.clickLocalStorage
 						.or(data-text="或")
 						button.ui.button#exit-fast-login 切换账户
 				form.ui.form#login-fm.my-hidden(role="form")
@@ -24,7 +28,7 @@ block content
 						input.ui.input#login-username(type="text", name="username", placeholder="用户名", required, oninvalid="this.setCustomValidity('用户名不能为空')")
 					.field
 						input.ui.input#login-password(type="password", name="password", placeholder="密码", required, oninvalid="this.setCustomValidity('密码不能为空')")
-					button.fluid.ui.black.big.button#login-btn(type="submit") 登陆
+					button.fluid.ui.black.big.button#login-btn.clickLocalStorage(type="submit") 登陆
 					br
 					.a-door-box
 						.a-door-right

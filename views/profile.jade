@@ -4,16 +4,26 @@ block head
 
 block content
 	.account-box.max-box
-		#profile-box
-			#avatar-box.user-avatar(style='background-image:#{user.avatar}')
-				.img-mask
-				img#uploaded-image.center
-			form.ui.form#avatar-fm.my-hidden(role='form', action="/update/profile/avatar",method="post", enctype="multipart/form-data")
-				input#upload-avatar(type='file', name="avatar", accept="image/png,image/jpg,image/jpeg")
-				button#avatar-submit(type='submit') 提交	
-			#display-name.ui.action.input
-				input.ui.input#name-input(type='text', name = 'name', placeholder='#{user.username}')
-				button.ui.button.black.disabled#update-name 更新名字
-			button.negative.fluid.ui.button.exit(onclick="location.href='/logout'") 退出登录
+		.menu-box
+				.ui.secondary.pointing.menu.h-tab
+					.logo.pointer(onclick="location.href='/'")
+						p instacode
+					//a.item.active 最近流行
+					//a.item 关注
+					.right.menu
+						.logout.pointer(onclick="location.href='/logout'")
+							p 注销
+		.h-container
+			#profile-box
+				#avatar-box.user-avatar(style='background-image:#{user.avatar}')
+					.img-mask
+					img#uploaded-image.center
+				form.ui.form#avatar-fm.my-hidden(role='form', action="/update/profile/	avatar",method="post", enctype="multipart/form-data")
+					input#upload-avatar(type='file', name="avatar", accept="image/	png,image/jpg,image/jpeg")
+					button#avatar-submit(type='submit') 提交	
+				#display-name.ui.action.input
+					input.ui.input#name-input(type='text', name = 'name', placeholder='	#{user.username}')
+					button.ui.button.black.disabled#update-name 更新名字
+				//button.negative.fluid.ui.button.exit(onclick="location.href='/logout'") 退出登录
 append js
 	script(src='/javascripts/profile.js')

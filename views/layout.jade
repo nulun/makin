@@ -2,15 +2,18 @@ doctype html
 html
   head
     block head
-    - var theTitle= titleVar || "原本料理"
+    - var theTitle= titleVar || "instacode"
     title #{theTitle}
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet' href='/semantic/dist/semantic.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/ref/monokai-sublime.css')
   body
     block content
     script(src='https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js')
     script(src='https://cdn.bootcss.com/semantic-ui/2.2.10/semantic.min.js')
     script(src='https://cdn.bootcss.com/vue/2.2.6/vue.min.js')
+    script(src='/javascripts/ref/js-md5.js')
+    script(src='/javascripts/ref/jdenticon-1.4.0.min.js')
     script(src='/javascripts/script.js')
     block js

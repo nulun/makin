@@ -20,8 +20,8 @@ var fs = require('fs');
 
 //===========================================================================
 var options = {
-  key: fs.readFileSync('./cert/2_cook-share.com.key'), //SSL证书
-  cert: fs.readFileSync('./cert/1_cook-share.com_bundle.crt')
+  key: fs.readFileSync('./cert/2_instacode.org.key'), //SSL证书
+  cert: fs.readFileSync('./cert/1_instacode.org_bundle.crt')
 };
 //===========================================================================
 
@@ -58,6 +58,7 @@ var upload = multer({ dest: 'uploads/' });
 
 var Recipe = require('./models/recipe'); //引入model
 var Profile = require('./models/profile');
+var Code = require('./models/code');
 
 //===========================================================================
 
@@ -132,7 +133,7 @@ passport.deserializeUser(Account.deserializeUser());
 
 //===========================================================================
 
-mongoose.connect('mongodb://localhost/cookshare'); //连接到mongodb
+mongoose.connect('mongodb://localhost/code'); //连接到mongodb
 
 //===========================================================================
 

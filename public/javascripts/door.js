@@ -6,21 +6,23 @@ $(".clickLocalStorage").on("click", function() {
 
 var signedUser = window.localStorage.defaultForm; //把上一步保存的true值给signedUser
 
-window.onload = function() { //加载完页面
-  if (!signedUser) {
-    $(".d-slide").click(); //如果是未注册过的用户，就让js点击一下[注册]按钮
-  };
-  setTimeout(function() {
-    if ($("#login-username").val() != '') {
-      $("#login-btn-2").text("以" + $("#login-username").val() + "登陆");
+// window.onload = function() { //加载完页面
+//   if (!signedUser) {
+//     $(".d-slide").click(); //如果是未注册过的用户，就让js点击一下[注册]按钮
+//   };
+//   setTimeout(function() {
+//     if ($("#login-username").val() != '') {
+//       $("#login-btn-2").text("以" + $("#login-username").val() + "登陆");
 
-      $(".fast-login-box").removeClass('my-hidden').transition('fade in');
-    } else {
-      $("#login-fm").removeClass('my-hidden');
-    };
-  }, 100);
+//       $(".fast-login-box").removeClass('my-hidden').transition('fade in');
+//     } else {
+//       $("#login-fm").removeClass('my-hidden');
+//     };
+//   }, 150);
 
-};
+// };
+
+$("#login-fm").removeClass('my-hidden');
 
 $("#login-btn-2").click(function() {
   $("#login-btn").click();
@@ -31,7 +33,7 @@ $("#exit-fast-login").click(function() {
   $("#login-fm").transition('slide down');
 });
 if (!localStorage.userAvatar) {
-  $(".user-avatar").css('background-image', 'url("/images/user-avatars/user.png")');
+  $(".user-avatar").attr({ "width": 400, "height": 400 }).jdenticon(md5($("#login-username").val()));
 };
 
 //=============================================================================================
@@ -132,13 +134,13 @@ var verify = function() {
           //console.log(data);  --> true
           //console.log("用户名已存在");
           u.transition('jiggle');
-          $("p.register-lead").text("此名称已被注册").removeClass("success-color").addClass("error-color").transition('fade in');
+          $("p.register-lead").text("⛔").removeClass("success-color").addClass("error-color").transition('fade in');
           u.parent().addClass("error");
           $("#register-btn").addClass('disabled');
           isError = true;
           isChange = false;
         } else {
-          $("p.register-lead").text("此名称可用").removeClass("error-color").addClass("success-color").transition('fade in');
+          $("p.register-lead").text("✅").removeClass("error-color").addClass("success-color").transition('fade in');
           u.parent().removeClass('error');
           isError = false;
           isChange = false;
@@ -296,3 +298,4 @@ $("#register-fm input").on("keyup", function() {
 });
 
 //========================================================================================
+

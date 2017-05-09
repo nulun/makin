@@ -13,10 +13,8 @@ function readURL(input) {
     var reader = new FileReader();
     reader.onload = function(e) {
       $('#uploaded-image').attr('src', e.target.result);
-      console.log($('#upload-avatar').val());
       //----------------------------------
       var data = new FormData(jQuery('#avatar-fm')[0]);
-      console.log(data);
       $.ajax({
         type: 'POST',
         url: '/update/profile/avatar',
@@ -25,7 +23,6 @@ function readURL(input) {
         contentType: false,
         processData: false,
         success: function(data, textStatus, jqXHR) {
-          console.log('avatar updated');
         }
       });
       //----------------------------------
