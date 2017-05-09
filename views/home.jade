@@ -16,11 +16,11 @@ block content
 					input(type = 'text', name='title')
 				button.ui.button(type = 'submit') ok, that's it
 		.newpost-mask.my-hidden.pointer
-			button.ui.massive.button.postcode 一个巨大肥硕丑陋无比的发布按钮
 		.slide-box-1.max-box
 			.menu-box
 				.ui.secondary.pointing.menu.h-tab
-					textarea.newpost(placeholder='', spellcheck="false")
+					.newcode
+					//textarea.newpost(placeholder='', spellcheck="false")
 					.logo.pointer(onclick="location.href='/'")
 						p instacode.
 					//a.item.active Trending
@@ -28,6 +28,9 @@ block content
 					//a.item.click-2 撰写新食谱
 					.like-color.nav-heart
 					canvas.h-avatar.pointer#h-avatar(name = '#{user.username}', onclick="location.href='/profile'")
+			.small-mask.my-hidden
+				textarea.newpost(placeholder='', spellcheck="false")
+				button.ui.massive.button.postcode 一个巨大肥硕丑陋无比的发布按钮
 			.h-container
 				.h-box(name='#{code[0]._id}')
 					.meta

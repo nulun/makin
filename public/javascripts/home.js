@@ -48,17 +48,19 @@ $("#upload-recipe-image").change(function() {
 
 //===============================================
 
-$('.newpost').click(function() {
-  $('.newpost-mask').removeClass('my-hidden').transition('fade in');
-  $(this).addClass('stay');
-  //$('.newpost-box').removeClass('my-hidden').transition('fade up in');
-  //$('textarea').focus();
-});
+//$('.newpost').click(function() {
+//$('.newpost-mask').removeClass('my-hidden').transition('fade in');
+//$(this).addClass('stay');
+//$('.newpost-box').removeClass('my-hidden').transition('fade up in');
+//$('textarea').focus();
+//});
 
-$('.newpost-mask').click(function() {
-  $('.newpost-mask').transition('fade');
-  $('.newpost').removeClass('stay');
-});
+// $('.newpost-mask').click(function() {
+//   $('.newpost-mask').transition('fade');
+//   $('.newpost').removeClass('stay');
+// });
+
+
 
 
 //======================================
@@ -226,5 +228,20 @@ $('.postcode').click(function() {
       $('.newpost-mask').click();
     }
   })
+})
+
+//==================================
+
+var isshow = false;
+$('.newcode').click(function() {
+  if (isshow) {
+    $(this).removeClass('hidecode');
+    $('.small-mask').removeClass('my-hidden').transition('fade down');
+    isshow = false;
+  } else {
+    $(this).addClass('hidecode');
+    $('.small-mask').removeClass('my-hidden').transition('fade down in');
+    isshow = true;
+  }
 })
 
