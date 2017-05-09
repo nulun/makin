@@ -236,19 +236,19 @@ var isshow = false;
 $('.newcode').click(function() {
   if (isshow) {
     $(this).removeClass('hidecode');
-    $('.small-mask').removeClass('my-hidden').transition('fade down');
+    $('.small-mask').removeClass('my-hidden').transition('slide down');
     $('body').css('overflow', 'scroll');
     $('body').css('background', '#f3f5f6');
     $('.menu-box').css('transform', 'translateX(0px)');
-    $('.subm-box').removeClass('my-hidden').transition('fade down');
+    $('.subm-box').removeClass('my-hidden').transition('slide down');
     isshow = false;
   } else {
     $(this).addClass('hidecode');
-    $('.small-mask').removeClass('my-hidden').transition('fade down in');
+    $('.small-mask').removeClass('my-hidden').transition('slide down in');
     $('body').css('overflow', 'hidden');
     $('body').css('background', '#fff');
     $('.menu-box').css('transform', 'translateX(-4px)');
-    $('.subm-box').removeClass('my-hidden').transition('fade down in');
+    $('.subm-box').removeClass('my-hidden').transition('slide down in');
     isshow = true;
   }
 })

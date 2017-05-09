@@ -187,6 +187,13 @@ input:focus {
     font-size: 2rem;
 }
 
+.new-linenum {
+    width: 40px;
+    height: 100%;
+    float: left;
+    background: rgb(47, 56, 67);
+}
+
 .newcode:before,
 .newcode:after {
     border-radius: 2px;
@@ -194,7 +201,7 @@ input:focus {
     top: 0;
     position: absolute;
     width: 20px;
-    height: 2px;
+    height: 3px;
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 }
 
@@ -239,17 +246,17 @@ input:focus {
 
 .submcode:before,
 .submcode:after {
-    border-radius: 2px;
+    border-radius: 8px;
     content: '';
     top: 0;
     position: absolute;
-    height: 2px;
+    height: 4px;
     background-image: linear-gradient(to top, #43e97b 0%, #38f9d7 100%);
 }
 
 .submcode:before {
     width: 15px;
-    left: 35px;
+    left: 36.5px;
     top: 20px;
     transform: rotate(45deg);
 }
@@ -291,10 +298,16 @@ input:focus {
     overflow: hidden;
 }
 
-.stay,
 .newpost {
+    height: 100%;
+    width: 100%;
+    margin-left: 40px;
+    padding-right: 40px;
+    background: rgb(47, 56, 67);
+}
+
+.newpost textarea {
     font-family: Consolas, Monaco, monospace, 'Source Code Pro';
-    margin-bottom: 10px;
     color: #eee;
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%) !important;
     padding: 10px;

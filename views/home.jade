@@ -31,7 +31,9 @@ block content
 					.like-color.nav-heart
 					canvas.h-avatar.pointer#h-avatar(name = '#{user.username}', onclick="location.href='/profile'")
 			.small-mask.my-hidden
-				textarea.newpost(placeholder='', spellcheck="false")
+				.new-linenum
+				.newpost
+					textarea(placeholder='', spellcheck="false")
 			.h-container
 				.h-box(name='#{code[0]._id}')
 					.meta
