@@ -222,10 +222,11 @@ $('.postcode').click(function() {
     type: 'POST',
     url: '/postcode',
     data: {
-      code: $('.newpost').val()
+      code: $('.newpost textarea').val()
     },
     success: function() {
-      $('.newpost-mask').click();
+      $('.small-mask').transition('slide down');
+      location.reload();
     }
   })
 })
@@ -251,5 +252,57 @@ $('.newcode').click(function() {
     $('.subm-box').removeClass('my-hidden').transition('slide down in');
     isshow = true;
   }
+})
+
+//=============================================
+
+$('.newpost textarea').on('keyup', function() {
+  let text = $(this).val();
+  let lines = text.split('\n');
+  let lineNum = lines.length + 1;
+  for (let i = 1; i < lineNum; i++) {
+    $('.new-linenum').innerHTML += '<span>' + (i) + '</span>';
+  }
+})
+
+//=============================================
+
+$('.h-box').mouseenter(function() {
+  $(this).children('.foot').children('i.trash').removeClass('my-hidden').transition('fade in');
+})
+
+$('.h-box').mouseleave(function() {
+  $(this).children('.foot').children('i.trash').removeClass('my-hidden').transition('fade');
+})
+
+$('.foot i.trash').click(function() {
+  $(this).prev().addClass('trash-box-scale');
+  let id = $(this).parent().parent().attr('name');
+  $(this).parent().parent().append("<div name = " + id + " class='delete-post'><i class='trash icon big-trash'/></div><div class='cancel-del'><i class='remove icon big-remove'/></div>");
+  $('div.h-box .foot .trash-box').not($(this).prev()).removeClass('trash-box-scale');
+  $('.cancel-del').not($(this).parent().parent().children('.cancel-del')).transition('fade out');
+  $('.delete-post').not($(this).parent().parent().children('.delete-post')).transition('fade out').remove();
+})
+
+$('div.h-box').on('click', '.cancel-del', function() {
+  $('.trash-box').removeClass('trash-box-scale');
+  $('.cancel-del').transition('fade out');
+  $('.delete-post').transition('fade out').remove();
+})
+
+$('div.h-box').on('click', '.delete-post', function() {
+  let id = $('.delete-post').parent().attr('name');
+  $.ajax({
+    type: 'DELETE',
+    url: '/delete/post',
+    data: {
+      '_id': id
+    },
+    success: function(data, textStatus, jqXHR) {
+      if (data) {
+        $('.delete-post').parent().transition('vertical flip out');
+      }
+    }
+  })
 })
 

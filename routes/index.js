@@ -36,12 +36,16 @@ router.get('/', function(req, res) {
             var r = a[1].slice(6, -1);
             if (r == req.user.username) {
               codeObj[i].liked = true;
-            }
+            };
             var z = z + ', ' + r;
           }
+          var p = code[i].postedBy;
+          var u = req.user.username;
+          if (p === u) {
+            codeObj[i].deletePost = true;
+          };
           codeObj.likedBy[i] = z.slice(1);
         }
-        console.log(codeObj.likedBy);
         res.render('home', { user: userObj, code: codeObj });
       });
     });
@@ -251,5 +255,20 @@ router.put('/like', function(req, res) {
   };
 });
 
+
+//=======================================================
+
+router.delete('/delete/post', function(req, res) {
+  var filter = { '_id': req.body._id, 'postedBy': req.user.username };
+  var callback = function(err) {
+    if (err) {
+      //
+    } else {
+      console.log("已删除id为" + req.body._id + "、作者为" + req.user.username + "的代码");
+      res.status(200).send("已删除");
+    }
+  };
+  Code.remove(filter, callback);
+})
 module.exports = router;
 

@@ -20,12 +20,8 @@ block content
 			.menu-box
 				.ui.secondary.pointing.menu.h-tab
 					.newcode
-					//textarea.newpost(placeholder='', spellcheck="false")
 					.logo.pointer(onclick="location.href='/'")
 						p instacode.
-					//a.item.active Trending
-					//a.item Followed
-					//a.item.click-2 撰写新食谱
 					.subm-box.my-hidden.postcode
 						.submcode
 					.like-color.nav-heart
@@ -35,132 +31,29 @@ block content
 				.newpost
 					textarea(placeholder='', spellcheck="false")
 			.h-container
-				.h-box(name='#{code[0]._id}')
-					.meta
-						canvas.avatar.pointer
-						.name
-							a #{code[0].postedBy}
-						.time
-							p #{code[0].date}
-						.lang
-							p
-					.code
-						pre
-							code #{code[0].code}
-					.foot
-						if (code[0].liked)
-							.heart.icon.liked
-						if (!code[0].liked)
-							.empty.heart.icon
-						p #{code.likedBy[0]}
-				.h-box(name='#{code[1]._id}')
-					.meta
-						canvas.avatar.pointer
-						.name
-							a #{code[1].postedBy}
-						.time
-							p #{code[1].date}
-						.lang
-							p
-					.code
-						pre
-							code #{code[1].code}
-					.foot
-						if (code[1].liked)
-							.heart.icon.liked
-						if (!code[1].liked)
-							.empty.heart.icon
-						p #{code.likedBy[1]}
-				.h-box(name='#{code[2]._id}')
-					.meta
-						canvas.avatar.pointer
-						.name
-							a #{code[2].postedBy}
-						.time
-							p #{code[2].date}
-						.lang
-							p
-					.code
-						pre
-							code #{code[2].code}
-					.foot
-						if (code[2].liked)
-							.heart.icon.liked
-						if (!code[2].liked)
-							.empty.heart.icon
-						p #{code.likedBy[2]}
-				.h-box(name='#{code[3]._id}')
-					.meta
-						canvas.avatar.pointer
-						.name
-							a #{code[3].postedBy}
-						.time
-							p #{code[3].date}
-						.lang
-							p
-					.code
-						pre
-							code #{code[3].code}
-					.foot
-						if (code[3].liked)
-							.heart.icon.liked
-						if (!code[3].liked)
-							.empty.heart.icon
-						p #{code.likedBy[3]}
-				.h-box(name='#{code[4]._id}')
-					.meta
-						canvas.avatar.pointer
-						.name
-							a #{code[4].postedBy}
-						.time
-							p #{code[4].date}
-						.lang
-							p
-					.code
-						pre
-							code #{code[4].code}
-					.foot
-						if (code[4].liked)
-							.heart.icon.liked
-						if (!code[4].liked)
-							.empty.heart.icon
-						p #{code.likedBy[4]}
-				.h-box(name='#{code[5]._id}')
-					.meta
-						canvas.avatar.pointer
-						.name
-							a #{code[5].postedBy}
-						.time
-							p #{code[5].date}
-						.lang
-							p
-					.code
-						pre
-							code #{code[5].code}
-					.foot
-						if (code[5].liked)
-							.heart.icon.liked
-						if (!code[5].liked)
-							.empty.heart.icon
-						p #{code.likedBy[5]}
-				.h-box(name='#{code[6]._id}')
-					.meta
-						canvas.avatar.pointer
-						.name
-							a #{code[6].postedBy}
-						.time
-							p #{code[6].date}
-						.lang
-							p
-					.code
-						pre
-							code #{code[6].code}
-					.foot
-						if (code[6].liked)
-							.heart.icon.liked
-						if (!code[6].liked)
-							.empty.heart.icon
-						p #{code.likedBy[6]}
+				-	for (var i = 0; i < code.length; ++i) {
+					.h-box(name='#{code[i]._id}')
+						.meta
+							canvas.avatar.pointer
+							.name
+								a #{code[i].postedBy}
+							.time
+								p #{code[i].date}
+							.lang
+								p
+						.code
+							pre
+								code #{code[i].code}
+						.foot
+							if (code[i].liked)
+								.heart.icon.liked
+							if (!code[i].liked)
+								.empty.heart.icon
+							p #{code.likedBy[i]}
+							if (code[i].deletePost)
+								.trash-box
+								i.trash.icon.foot-trash.my-hidden
+				-	}
 		.slide-box-2.my-hidden.max-box.share-box
 			.s-box#v-wrap
 				#recipe-image.image-wrapper

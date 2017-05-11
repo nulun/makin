@@ -128,7 +128,7 @@ textarea {
     position: absolute;
     content: "";
     left: 13.5px;
-    top: 0;
+    top: 2px;
     width: 13.5px;
     height: 21.6px;
     background: rgb(220, 229, 234);
@@ -164,6 +164,66 @@ textarea {
 .like-color:after {
     /*background-color: rgb(252, 46, 90);*/
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+}
+
+i.foot-trash {
+    cursor: pointer;
+    position: absolute;
+    bottom: 8px;
+    right: 0;
+    color: #d3d5df;
+    z-index: 888;
+}
+
+.trash-box {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    right: 10px;
+    bottom: 10px;
+    transition: all ease-in 0.4s;
+}
+
+.trash-box-scale {
+    background-color: rgba(255, 255, 255, .98);
+    transform: scale(70);
+    transition: all ease-out 0.6s;
+    z-index: 999;
+}
+
+i.foot-trash:hover {
+    color: #838589;
+}
+
+.cancel-del {
+    font-size: 5rem;
+    border-radius: 10px;
+    z-index: 1000;
+    position: absolute;
+    text-align: center;
+    cursor: pointer;
+    right: 30%;
+    top: 50%;
+}
+
+.delete-post {
+    font-size: 5rem;
+    border-radius: 10px;
+    z-index: 1000;
+    position: absolute;
+    text-align: center;
+    cursor: pointer;
+    left: 30%;
+    top: 50%;
+}
+
+.big-trash {
+    color: rgb(234, 67, 53) !important;
+}
+
+.big-remove {
+    color: rgb(dbdbdf) !important;
 }
 
 textarea:focus {
@@ -455,12 +515,21 @@ a.item {
 }
 
 .h-box {
+    position: relative;
     border: .5px solid #e8e8e8;
     background-color: #fff;
     border-radius: 2px;
     margin: 10px auto;
     max-width: 800px;
+    overflow: hidden;
+    transition: transform 0.8s ease;
     /*    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);*/
+}
+
+.comp {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: max-height 0.8s ease;
 }
 
 .meta {
@@ -505,6 +574,7 @@ code {
 
 .foot {
     padding: 10px;
+    position: relative;
 }
 
 .foot i {
@@ -513,8 +583,9 @@ code {
 
 .foot p {
     margin-left: 1px;
-    font-size: .95rem;
+    font-size: .89rem;
     font-weight: bold;
+    margin-bottom: 0 !important;
 }
 
 .comments {
