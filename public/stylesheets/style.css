@@ -470,11 +470,23 @@ input:focus {
 }
 
 .logo {
+    position: relative;
     font-weight: bold;
     color: rgb(40, 44, 52);
     margin: auto;
     font-size: 1.35rem;
     font-family: Consolas, Monaco, monospace, 'Source Code Pro';
+}
+.logo:before{
+    font-weight: normal;
+    color: rgb(255, 38, 83);
+    position: absolute;
+    font-family: 'Source Code Pro';
+    right: -1.3rem;
+    top: -0.5rem;
+    font-size: .75rem;
+    content: 'beta';
+
 }
 
 .logout {
