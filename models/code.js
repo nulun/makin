@@ -23,4 +23,3 @@ var codeSchema = new Schema({
 var Code = mongoose.model('Code', codeSchema);
 
 module.exports = Code;
-
