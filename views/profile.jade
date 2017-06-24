@@ -15,11 +15,11 @@ block content
 							p 注销
 		.h-container
 			#profile-box
-				#avatar-box.user-avatar(style='background-image:#{user.avatar}')
+				//#avatar-box.user-avatar(style='background-image:#{user.avatar}')
 					.img-mask
 					img#uploaded-image.center
 				form.ui.form#avatar-fm.my-hidden(role='form', action="/update/profile/	avatar",method="post", enctype="multipart/form-data")
-					input#upload-avatar(type='file', name="avatar", accept="image/	png,image/jpg,image/jpeg")
+					//input#upload-avatar(type='file', name="avatar", accept="image/	png,image/jpg,image/jpeg")
 					button#avatar-submit(type='submit') 提交	
 				#display-name.ui.action.input
 					input.ui.input#name-input(type='text', name = 'name', placeholder='	#{user.username}')

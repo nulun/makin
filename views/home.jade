@@ -20,12 +20,14 @@ block content
 			.menu-box
 				.ui.secondary.pointing.menu.h-tab
 					.newcode
+					input#nav-search(type='text')
+					.nav-search
 					.logo.pointer(onclick="location.href='/'")
-						p instacode.
+						p Instacode
 					.subm-box.my-hidden.postcode
 						.submcode
 					.like-color.nav-heart
-					canvas.h-avatar.pointer#h-avatar(name = '#{user.username}', onclick="location.href='/profile'")
+					canvas.h-avatar.pointer#h-avatar(name = '#{user.username}', onclick="location.href='/logout'")
 			.small-mask.my-hidden
 				.new-linenum
 				.newpost
@@ -54,6 +56,13 @@ block content
 								.trash-box
 								i.trash.icon.foot-trash.my-hidden
 				-	}
+				//- .sidebar-container
+				//- 	.search-area
+				//- 		.ui.search
+				//- 			.ui.icon.input
+				//- 				input.prompt(type='text' placeholder='Search Instacode')
+				//- 				i.search.icon
+				//- 			.results
 		.slide-box-2.my-hidden.max-box.share-box
 			.s-box#v-wrap
 				#recipe-image.image-wrapper

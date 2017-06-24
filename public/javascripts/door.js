@@ -60,7 +60,7 @@ var login = function() {
       $("#login-btn").removeClass("loading"); //删除按钮的加载动画
       $("#login-btn-2").removeClass('loading');
       $("input").transition('shake'); //出现错误摇动输入框动画
-      $("p.login-lead").text("用户名或密码错误").addClass("error-color").transition('fade in');
+      $("p.login-lead").text("⛔").addClass("error-color").transition('fade in');
     }
   });
 };
@@ -77,15 +77,15 @@ var formValid = function() {
       $("#login-password").parent().removeClass('error');
       $("#login-username").parent().removeClass('error');
     } else if (u && !p) {
-      $("p.login-lead").text("请输入密码").addClass("error-color");
+      $("p.login-lead").text("⛔").addClass("error-color");
       $("#login-password").parent().addClass('error');
       $("#login-username").parent().removeClass('error');
     } else if (!u && p) {
-      $("p.login-lead").text("请输入用户名").addClass("error-color");
+      $("p.login-lead").text("⛔").addClass("error-color");
       $("#login-username").parent().addClass('error');
       $("#login-password").parent().removeClass('error');
     } else {
-      $("p.login-lead").text("请输入用户名和密码").addClass("error-color");
+      $("p.login-lead").text("⛔").addClass("error-color");
       $("#login-username").parent().addClass('error');
       $("#login-password").parent().addClass('error');
     };
